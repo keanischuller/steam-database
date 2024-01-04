@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steam Database</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .container-fluid {
+            height: 100vh;
+        }
+
+        body {
+            background: linear-gradient(to bottom, #0072ff, #00c6ff);
+        }
+
+        /* Additional styles for the table */
+        table {
+            width: auto;
+            table-layout: fixed;
+            background: rgb(190, 220, 242, 0.3)
+        }
+
+        th, td {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid bg-gradient p-5">
+        <h1 class="text-center text-white">🎮 Steam Database 🎮</h1>
+        <div class="row mt-5">
+            <div class="col-md-12 d-flex justify-content-center">
+                <form action="{{ url_for('query1') }}" method="post">
+                    <input type="submit" class="btn btn-primary m-2" value="John Doe's Purchases">
+                </form>
+                <form action="{{ url_for('query2') }}" method="post">
+                    <input type="submit" class="btn btn-success m-2" value="Recommended Games">
+                </form>
+                <form action="{{ url_for('query3') }}" method="post">
+                    <input type="submit" class="btn btn-warning m-2" value="User Playtime">
+                </form>
+                <form action="{{ url_for('query4') }}" method="post">
+                    <input type="submit" class="btn btn-info m-2" value="Action Games">
+                </form>
+                <form action="{{ url_for('query5') }}" method="post">
+                    <input type="submit" class="btn btn-danger m-2" value="By DevCorp1">
+                </form>
+            </div>
+            <div class="col-md-12 d-flex justify-content-center">
+                <form action="{{ url_for('query6') }}" method="post">
+                    <input type="submit" class="btn btn-success m-2" value="English & French Games">
+                </form>
+                <form action="{{ url_for('query7') }}" method="post">
+                    <input type="submit" class="btn btn-warning m-2" value="Top Recommendations">
+                </form>
+                <form action="{{ url_for('query8') }}" method="post">
+                    <input type="submit" class="btn btn-info m-2" value="Popular Genres">
+                </form>
+                <form action="{{ url_for('query9') }}" method="post">
+                    <input type="submit" class="btn btn-danger m-2" value="User Spending">
+                </form>
+                <form action="{{ url_for('query10') }}" method="post">
+                    <input type="submit" class="btn btn-primary m-2" value="Game Ratings & Recommendations">
+                </form>
+            </div>
+            <div class="col-md-12 d-flex justify-content-center">
+                <form action="{{ url_for('query11') }}" method="post">
+                    <input type="submit" class="btn btn-warning m-2" value="Above Average Spenders' Games">
+                </form>
+                <form action="{{ url_for('query12') }}" method="post">
+                    <input type="submit" class="btn btn-info m-2" value="Always Recommended Games">
+                </form>
+                <form action="{{ url_for('query13') }}" method="post">
+                    <input type="submit" class="btn btn-danger m-2" value="Top Reviewers">
+                </form>
+                <form action="{{ url_for('query14') }}" method="post">
+                    <input type="submit" class="btn btn-primary m-2" value="Bundles with Premium Games">
+                </form>
+                <form action="{{ url_for('query15') }}" method="post">
+                    <input type="submit" class="btn btn-success m-2" value="Full Recommendation Buyers">
+                </form>
+            </div>
+            <div class="col-md-12 d-flex justify-content-center">
+                <form action="{{ url_for('query16') }}" method="post">
+                    <input type="submit" class="btn btn-info m-2" value="Game Recommendations for User">
+                </form>
+                <form action="{{ url_for('query17') }}" method="post">
+                    <input type="submit" class="btn btn-danger m-2" value="Trending Reviews">
+                </form>
+                <form action="{{ url_for('query18') }}" method="post">
+                    <input type="submit" class="btn btn-primary m-2" value="Games with Low Average Rating in Genre">
+                </form>
+                <form action="{{ url_for('query19') }}" method="post">
+                    <input type="submit" class="btn btn-success m-2" value="Games Bought by High Spenders">
+                </form>
+                <form action="{{ url_for('query20') }}" method="post">
+                    <input type="submit" class="btn btn-warning m-2" value="Multiplayer Game Enthusiasts">
+                </form>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <!-- Main content container -->
+                <div class="d-flex flex-column">
+                    <!-- SQL Results Display -->
+                    <div class="chat-output" id="chatOutput" style="align-self: center">
+                        <table border="1">
+                            <thead>
+                                <tr>
+                                    {% for col in columns %}
+                                    <th>{{ col }}</th>
+                                    {% endfor %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for row in results %}
+                                <tr>
+                                    {% for key, value in row.items() %}
+                                    <td>{{ value }}</td>
+                                    {% endfor %}
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
